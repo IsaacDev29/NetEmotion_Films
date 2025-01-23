@@ -68,6 +68,14 @@
       .filaCartelera{
         margin: 15px 80px 15px 80px;
       }
+      
+       /* sección películas destacadas */
+        .destacados{
+            background-color: aqua;
+            height: 350px;
+            margin-top: 25px;
+            background: linear-gradient(to right,#3E1032,#CCB3C6);
+        }
 
       
       
