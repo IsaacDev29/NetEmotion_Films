@@ -56,3 +56,18 @@
         width: 715px;
         margin-left: -10px
     }
+
+      /* sección cartelera 1 */
+      .cartel1{
+        text-align: center;
+        color: #3E1032;
+        margin: 0px;
+        padding-bottom: 22px;
+      }
+
+      .filaCartelera{
+        margin: 15px 80px 15px 80px;
+      }
+
+      
+      
