@@ -2,7 +2,7 @@
 .navegacion{
     background-color: #3E1032;
     padding-top: 0%;
-    padding-bottom: 15px;
+    padding-bottom: 1px;
 }
 
 .indice {
@@ -33,5 +33,26 @@
     font-size: 20px;
 }
 .logo{
-    padding: 0, 37px, 0, 40px;
+    height: 125px;
+    width: 210px;
 }
+
+    /*---- código Carrusel de imágenes--- */
+    .filaCarrusel{
+        background-color: chocolate;
+        margin: 78px 198px;
+        height: 300px;
+        width: 720px;
+    }
+
+    .columnaCarrusel{
+        background-color:blue;
+        height: 300px;
+        width: 720px;
+    }
+    
+    #moviesCarrusel{
+        height: 300px;
+        width: 715px;
+        margin-left: -10px
+    }
