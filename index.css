@@ -76,6 +76,21 @@
             margin-top: 25px;
             background: linear-gradient(to right,#3E1032,#CCB3C6);
         }
+          /* Elementos de cartelera 2 */
+          .cartelera2{
+            margin-top: 30px;
+            margin-bottom: 30px;
+          }
 
-      
-      
+          .categorias{
+            margin-top: 8px;
+          }
+
+          .pie{
+            background-color: #CCB3C6;
+            margin-top: 30px;
+          }
+
+          .piePag{
+            margin-top: 6px;
+          }
