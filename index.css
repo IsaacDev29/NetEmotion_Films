@@ -68,6 +68,10 @@
       .filaCartelera{
         margin: 15px 80px 15px 80px;
       }
+
+      .tarjeta{
+        height: 340px;
+      }
       
        /* sección películas destacadas */
         .destacados{
@@ -82,6 +86,10 @@
             margin-bottom: 30px;
           }
 
+          .cartelera2 .tarjeta{
+            margin-bottom: 15px;
+          }
+
           .categorias{
             margin-top: 8px;
           }
@@ -92,5 +100,5 @@
           }
 
           .piePag{
-            margin-top: 6px;
+            margin-top: 8.7px;
           }
