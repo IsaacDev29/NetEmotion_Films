@@ -1,19 +1,20 @@
 /* estilo barra de navegación */
-.navegacion{
-    background-color: #3E1032;
-    padding-top: 0%;
-    padding-bottom: 1px;
+.barraInicio{
+  background-color: #3E1032;
+  margin-top: 0%;
+  padding-bottom: 5px;
 }
 
-.indice {
-    font-size: 25px;
-    color: antiquewhite;
+.inicio{
+  padding: 0%;
 }
 
-.izquierda{
-    padding-left: 170px;
-    padding-right: 104px;
-    font-size: 20px;
+.nombreNegocio{
+  color: #fff;
+}
+
+.inicio button{
+  background-color: #fff;
 }
 
 #comienzo {
@@ -100,5 +101,5 @@
           }
 
           .piePag{
-            margin-top: 8.7px;
+            margin-top: 11.5px;
           }

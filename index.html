@@ -12,29 +12,18 @@
   <body>
     <header>
       <!-- IMPLEMENTACIÓN BARRA DE NAVEGACIÓN -->
-         <nav class="navbar navbar-expand-lg bg-body-tertiary navegacion">
-           <div class="container-fluid navegacion">
-             <a class="nav-link indice izquierda" href="#">NUEVO</a>
-             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-             </button>
-             <div class="collapse navbar-collapse" id="navbarNav">
-               <ul class="navbar-nav">
-                 <li class="nav-item" id="comienzo">
-                   <a class="nav-link indice" aria-current="page" href="#">INICIO</a>
-                 </li>
-                 <li>
-                   <img src="img/logo.png" class="logo"> 
-                 </li>
-                 <li class="nav-item" id="categoria">
-                   <a class="nav-link indice" href="#">CATEGORÍAS</a>
-                 </li>
-                 <li class="nav-item">
-                   <a class="nav-link indice" id="registro" href="#">LOGIN</a>
-                 </li>
-               </ul>
-             </div>
-           </div>
-         </nav>
+      <nav class="navbar bg-body-tertiary inicio">
+        <div class="container-fluid barraInicio">
+          <a class="navbar-brand nombreNegocio" href="#">
+            <img src="img/logo-nav.png" alt="Logo" width="68" height="52" class="d-inline-block ">
+              NetEmotion Films
+          </a>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
       <!-- FINAL DE BARRA DE NAVEGACIÓN -->
     </header>
     <section class="container">
@@ -176,9 +165,9 @@
               <div class="card tarjeta" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">Categoria 1</h5>
+                  <h5 class="card-title">Acción</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">VER</a>
+                  <a href="#" class="btn btn-primary">VER GENERO</a>
                 </div>
               </div>
             </div>
@@ -186,9 +175,9 @@
               <div class="card tarjeta" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">Categoria 2</h5>
+                  <h5 class="card-title">Ciencia-Ficción</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">VER</a>
+                  <a href="#" class="btn btn-primary">VER GENERO</a>
                 </div>
               </div>
             </div>
@@ -196,9 +185,9 @@
               <div class="card tarjeta" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">Categoria 3</h5>
+                  <h5 class="card-title">Fantastico</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">VER</a>
+                  <a href="#" class="btn btn-primary">VER GENERO</a>
                 </div>
               </div>
             </div>

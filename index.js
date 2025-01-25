@@ -89,9 +89,39 @@ async function cargarPeliculasCartelera2() {
     console.error('Error al cargar películas:', error.message);
   }
 }
+// peliculas de la categoria
+async function cargarPeliculasGenero() {
+  try {
+    const API_URL = 'https://www.freetestapi.com/api/v1/movies?limit=3';
+    const listaCartelera = document.querySelector('.categorias');
+    const respuesta = await fetch(API_URL);
+    if (!respuesta.ok) throw new Error('Error al obtener las películas');
+    const peliculas = await respuesta.json();
+  
+    listaCartelera.innerHTML = '';
 
+    peliculas.forEach((pelicula) => {
+      const peliculaHTML = `
+        <div class="col-lg-4 columnaTarjeta">
+          <div class="card tarjeta" style="width: 18rem;">
+            <img src="https://fakeimg.pl/300x150" class="card-img-top">
+            <div class="card-body">
+              <h4 class="card-text">Titulo: ${pelicula.title}</h4>
+              <p class="card-text">Año: ${pelicula.year}</p>
+              <p class="card-text">Rating: ${pelicula.rating}</p>
+            </div>
+          </div>
+        </div>
+      `;
+      listaCartelera.innerHTML += peliculaHTML;
+    });
+  } catch (error) {
+    console.error('Error al cargar películas:', error.message);
+  }
+}
 document.addEventListener('DOMContentLoaded', () => {
   cargarPeliculasCartelera1();
   cargarPeliculasCartelera2();
+  cargarPeliculasGenero();
 });
   
