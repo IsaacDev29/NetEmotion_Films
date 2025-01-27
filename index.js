@@ -109,6 +109,8 @@ async function cargarPeliculasGenero() {
               <h4 class="card-text">Titulo: ${pelicula.title}</h4>
               <p class="card-text">Año: ${pelicula.year}</p>
               <p class="card-text">Rating: ${pelicula.rating}</p>
+              <p class="card-text">${pelicula.genre}</p>
+              <p class="card-text">Premios: ${pelicula.awards}</p>
             </div>
           </div>
         </div>

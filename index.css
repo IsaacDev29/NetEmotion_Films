@@ -71,7 +71,12 @@
       }
 
       .tarjeta{
-        height: 340px;
+        cursor: pointer;
+        height: 380px;
+      }
+
+      .tarjeta:hover{
+        box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.3);
       }
       
        /* sección películas destacadas */
@@ -93,6 +98,7 @@
 
           .categorias{
             margin-top: 8px;
+            margin-bottom: 70px;
           }
 
           .pie{
