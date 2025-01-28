@@ -22,7 +22,17 @@ async function obtenerPeliculaPorID(id) {
         throw new Error(`Error: ${respuesta.status}`);
       }
       const datos = await respuesta.json();
-      console.log('Pelicula:', datos);
+
+      const titulo = document.getElementById('tituloPelicula');
+      const descripcion = document.getElementById('descripcionPelicula');
+      const director = document.getElementById('directorPelicula');
+      const nominacion = document.getElementById('premiosPelicula');
+
+      titulo.textContent = datos.title;
+      descripcion.textContent = datos.plot;
+      director.textContent = datos.director;
+      nominacion.textContent = datos.awards;
+
     } catch (error) {
       console.error(`Error al obtener la película con ID ${id}:`, error.message);
     }
@@ -125,5 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
   cargarPeliculasCartelera1();
   cargarPeliculasCartelera2();
   cargarPeliculasGenero();
+  obtenerPeliculaPorID(15);
 });
   

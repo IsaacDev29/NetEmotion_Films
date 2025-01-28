@@ -1,4 +1,17 @@
 /* estilo barra de navegación */
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: #FFF5EE;
+}
+
+.nombreNegocio{
+  font-family: "Righteous", serif;
+  font-style: normal;
+  font-weight: 300;
+  color: #fff;
+}
+
 .barraInicio{
   background-color: #3E1032;
   margin-top: 0%;
@@ -7,10 +20,6 @@
 
 .inicio{
   padding: 0%;
-}
-
-.nombreNegocio{
-  color: #fff;
 }
 
 .inicio button{
@@ -39,15 +48,21 @@
 }
 
     /*---- código Carrusel de imágenes--- */
+    .cartel1{
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-style:italic;
+    }
+
     .filaCarrusel{
-        background-color: chocolate;
+        /* background-color: chocolate; */
         margin: 78px 198px;
         height: 300px;
         width: 720px;
     }
 
     .columnaCarrusel{
-        background-color:blue;
+        /* background-color:blue; */
         height: 300px;
         width: 720px;
     }
@@ -80,6 +95,26 @@
       }
       
        /* sección películas destacadas */
+        .columnaDestacados{
+          height: 300px;
+          width: 600px;
+        }
+
+        .columnaDestacados img{
+          margin: 26px 30px;
+          height: 286px;
+          width: 330px;
+        }
+
+        .infoPeli{
+          font-family: "Righteous", serif;
+          font-style: normal;
+          font-weight: 300;
+          margin-top: 60px;
+          font-size: 20px;
+          color: #F0F4C3;
+        }
+
         .destacados{
             background-color: aqua;
             height: 350px;
