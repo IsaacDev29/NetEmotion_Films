@@ -144,3 +144,18 @@ body {
           .piePag{
             margin-top: 11.5px;
           }
+           /* contenedor para resultados de busqueda */
+           #resultadosBusqueda {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          }
+          
+          #resultadosBusqueda h2 {
+            color: #3E1032;
+            font-family: "Righteous", serif;
+            margin-bottom: 20px;
+          }
+          

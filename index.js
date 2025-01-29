@@ -1,55 +1,39 @@
-
-
-async function obtenerPeliculas(){
-    try {
-        const url = 'https://www.freetestapi.com/api/v1/movies';
-        const respuesta = await fetch(url);
-        if (!respuesta.ok){
-            throw new Error(`Error: ${respuesta.status}`);
-        }
-        const datos = await respuesta.json();
-        console.log('Peliculas:', datos);
-    }catch (error){
-        console.error('Error al obtener películas:', error.message);
-    }
-}
-
 async function obtenerPeliculaPorID(id) {
-    try {
-      const url = `https://www.freetestapi.com/api/v1/movies/${id}`;
-      const respuesta = await fetch(url);
-      if (!respuesta.ok) {
-        throw new Error(`Error: ${respuesta.status}`);
-      }
-      const datos = await respuesta.json();
-
-      const titulo = document.getElementById('tituloPelicula');
-      const descripcion = document.getElementById('descripcionPelicula');
-      const director = document.getElementById('directorPelicula');
-      const nominacion = document.getElementById('premiosPelicula');
-
-      titulo.textContent = datos.title;
-      descripcion.textContent = datos.plot;
-      director.textContent = datos.director;
-      nominacion.textContent = datos.awards;
-
-    } catch (error) {
-      console.error(`Error al obtener la película con ID ${id}:`, error.message);
+  try {
+    const url = `https://www.freetestapi.com/api/v1/movies/${id}`;
+    const respuesta = await fetch(url);
+    if (!respuesta.ok) {
+      throw new Error(`Error: ${respuesta.status}`);
     }
+    const datos = await respuesta.json();
+
+    const titulo = document.getElementById('tituloPelicula');
+    const descripcion = document.getElementById('descripcionPelicula');
+    const director = document.getElementById('directorPelicula');
+    const nominacion = document.getElementById('premiosPelicula');
+
+    titulo.textContent = datos.title;
+    descripcion.textContent = datos.plot;
+    director.textContent = datos.director;
+    nominacion.textContent = datos.awards;
+
+  } catch (error) {
+    console.error(`Error al obtener la película con ID ${id}:`, error.message);
+  }
 }
 // peliculas de la cartelera1
 async function cargarPeliculasCartelera1() {
-    try {
-      const API_URL = 'https://www.freetestapi.com/api/v1/movies?limit=3';
-      const listaCartelera = document.querySelector('.filaCartelera');
-      const respuesta = await fetch(API_URL);
-      if (!respuesta.ok) throw new Error('Error al obtener las películas');
-      const peliculas = await respuesta.json();
-    
-      listaCartelera.innerHTML = '';
+  try {
+    const API_URL = 'https://www.freetestapi.com/api/v1/movies?limit=3';
+    const listaCartelera = document.querySelector('.filaCartelera');
+    const respuesta = await fetch(API_URL);
+    if (!respuesta.ok) throw new Error('Error al obtener las películas');
+    const peliculas = await respuesta.json();
 
-      peliculas.forEach((pelicula) => {
-        const peliculaHTML = `
+    listaCartelera.innerHTML = '';
+
+    peliculas.forEach((pelicula) => {
+      const peliculaHTML = `
           <div class="col-lg-4 columnaTarjeta">
             <div class="card tarjeta" style="width: 18rem;">
               <img src="https://fakeimg.pl/300x150" class="card-img-top">
@@ -62,11 +46,11 @@ async function cargarPeliculasCartelera1() {
             </div>
           </div>
         `;
-        listaCartelera.innerHTML += peliculaHTML;
-      });
-    } catch (error) {
-      console.error('Error al cargar películas:', error.message);
-    }
+      listaCartelera.innerHTML += peliculaHTML;
+    });
+  } catch (error) {
+    console.error('Error al cargar películas:', error.message);
+  }
 }
 // peliculas de la cartelera 2
 async function cargarPeliculasCartelera2() {
@@ -76,7 +60,7 @@ async function cargarPeliculasCartelera2() {
     const respuesta = await fetch(API_URL);
     if (!respuesta.ok) throw new Error('Error al obtener las películas');
     const peliculas = await respuesta.json();
-  
+
     listaCartelera.innerHTML = '';
 
     peliculas.forEach((pelicula) => {
@@ -107,7 +91,7 @@ async function cargarPeliculasGenero() {
     const respuesta = await fetch(API_URL);
     if (!respuesta.ok) throw new Error('Error al obtener las películas');
     const peliculas = await respuesta.json();
-  
+
     listaCartelera.innerHTML = '';
 
     peliculas.forEach((pelicula) => {
@@ -131,10 +115,70 @@ async function cargarPeliculasGenero() {
     console.error('Error al cargar películas:', error.message);
   }
 }
+
+async function buscarPeliculas(event) {
+  event.preventDefault(); // Evita que el formulario recargue la página
+
+  const termino = document.getElementById('inputBusqueda').value.trim().toLowerCase(); // Obtiene el valor del input
+  if (!termino) {
+    alert('Por favor, ingresa un término para buscar.');
+    return;
+  }
+
+  try {
+    const API_URL = `https://www.freetestapi.com/api/v1/movies`;
+    const respuesta = await fetch(API_URL);
+    if (!respuesta.ok) throw new Error('Error al obtener las películas');
+
+    const peliculas = await respuesta.json();
+    const peliculasFiltradas = peliculas.filter((pelicula) =>
+      pelicula.title.toLowerCase().includes(termino) ||
+      (pelicula.year && pelicula.year.toString().includes(termino)) ||
+      (pelicula.genre && pelicula.genre.toLowerCase().includes(termino)) ||
+      (pelicula.director && pelicula.director.toLowerCase().includes(termino))
+    );
+
+    // Selecciona solo las primeras 3 películas filtradas
+    const resultadosLimitados = peliculasFiltradas.slice(0, 3);
+
+    mostrarResultadosBusqueda(resultadosLimitados);
+  } catch (error) {
+    console.error('Error al buscar películas:', error.message);
+  }
+}
+
+function mostrarResultadosBusqueda(peliculas) {
+  const contenedorResultados = document.querySelector('#resultadosBusqueda .filaResultados'); // Selecciona el nuevo contenedor
+  contenedorResultados.innerHTML = ''; // Limpia los resultados previos
+
+  if (peliculas.length === 0) {
+    contenedorResultados.innerHTML = '<p>No se encontraron resultados.</p>';
+    return;
+  }
+
+  peliculas.forEach((pelicula) => {
+    const peliculaHTML = `
+       <div class="col-lg-4 columnaTarjeta">
+        <div class="card tarjeta" style="width: 18rem;">
+          <img src="https://fakeimg.pl/300x150" class="card-img-top" alt="${pelicula.title}">
+          <div class="card-body">
+            <h5 class="card-title">${pelicula.title}</h5>
+            <p class="card-text">Director: ${pelicula.director || 'Desconocido'}</p>
+            <p class="card-text">Año: ${pelicula.year || 'N/A'}</p>
+            <p class="card-text">Género: ${pelicula.genre || 'N/A'}</p>
+            <p class="card-text">Rating: ${pelicula.rating || 'N/A'}</p>
+          </div>
+        </div>
+      </div>
+    `;
+    contenedorResultados.innerHTML += peliculaHTML;
+  });
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   cargarPeliculasCartelera1();
   cargarPeliculasCartelera2();
   cargarPeliculasGenero();
   obtenerPeliculaPorID(15);
 });
-  

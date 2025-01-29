@@ -32,8 +32,8 @@
           <img src="img/logo-nav.png" alt="Logo" width="68" height="52" class="d-inline-block ">
           NetEmotion Films
         </a>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Encontrar" aria-label="Search">
+        <form id="formularioBusqueda" class="d-flex" role="search" onsubmit="buscarPeliculas(event)">
+          <input id="inputBusqueda" class="form-control me-2" type="search" placeholder="Buscar película" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
       </div>
@@ -215,7 +215,14 @@
       </div>
     </div>
   </section>
-
+  <!-- contenedor para mostrar resultados del buscador -->
+  <section id="resultadosBusqueda" class="container mt-5">
+    <h2>Resultados de la búsqueda</h2>
+    <div class="row filaResultados">
+      <!-- Aquí se mostrarán los resultados de búsqueda -->
+    </div>
+  </section>
+  <!-- final del contenedor -->
   <footer>
     <section class="container-fluid pie">
       <div class="row">
