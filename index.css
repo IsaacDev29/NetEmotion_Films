@@ -10,6 +10,8 @@ body {
   font-style: normal;
   font-weight: 300;
   color: #fff;
+  cursor: default;
+  pointer-events: none;
 }
 
 .barraInicio{

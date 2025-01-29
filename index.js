@@ -119,36 +119,53 @@ async function cargarPeliculasGenero() {
 async function buscarPeliculas(event) {
   event.preventDefault(); // Evita que el formulario recargue la página
 
-  const termino = document.getElementById('inputBusqueda').value.trim().toLowerCase(); // Obtiene el valor del input
+  const termino = document.getElementById('inputBusqueda').value.trim().toLowerCase();
   if (!termino) {
     alert('Por favor, ingresa un término para buscar.');
     return;
   }
 
+  const contenedorResultados = document.querySelector('#resultadosBusqueda .filaResultados');
+  contenedorResultados.innerHTML = '<p>Cargando...</p>'; // Mensaje mientras busca
+
   try {
-    const API_URL = `https://www.freetestapi.com/api/v1/movies`;
+    const API_URL = `https://www.freetestapi.com/api/v1/movies`; // Obtiene TODAS las películas
     const respuesta = await fetch(API_URL);
-    if (!respuesta.ok) throw new Error('Error al obtener las películas');
+    if (!respuesta.ok) throw new Error(`Error en API: ${respuesta.status}`);
 
     const peliculas = await respuesta.json();
+    console.log("Películas obtenidas de la API:", peliculas); // Debug: Ver si llegan datos
+
+    // Filtrar resultados
     const peliculasFiltradas = peliculas.filter((pelicula) =>
-      pelicula.title.toLowerCase().includes(termino) ||
+      (pelicula.title && pelicula.title.toLowerCase().includes(termino)) ||
       (pelicula.year && pelicula.year.toString().includes(termino)) ||
-      (pelicula.genre && pelicula.genre.toLowerCase().includes(termino)) ||
-      (pelicula.director && pelicula.director.toLowerCase().includes(termino))
+      (pelicula.genre && typeof pelicula.genre === 'string' && pelicula.genre.toLowerCase().includes(termino)) ||
+      (pelicula.director && typeof pelicula.director === 'string' && pelicula.director.toLowerCase().includes(termino))
     );
 
-    // Selecciona solo las primeras 3 películas filtradas
+    console.log("Películas filtradas:", peliculasFiltradas); // Debug: Ver cuántas películas coinciden
+
+    // Si no hay resultados, mostrar mensaje
+    if (peliculasFiltradas.length === 0) {
+      contenedorResultados.innerHTML = '<p>No se encontraron resultados.</p>';
+      return;
+    }
+
+    // Limitar a solo 3 resultados
     const resultadosLimitados = peliculasFiltradas.slice(0, 3);
 
+    // Mostrar resultados
     mostrarResultadosBusqueda(resultadosLimitados);
   } catch (error) {
-    console.error('Error al buscar películas:', error.message);
+    console.error('Error en la búsqueda:', error.message);
+    contenedorResultados.innerHTML = `<p>Error al cargar los resultados: ${error.message}</p>`;
   }
 }
 
+
 function mostrarResultadosBusqueda(peliculas) {
-  const contenedorResultados = document.querySelector('#resultadosBusqueda .filaResultados'); // Selecciona el nuevo contenedor
+  const contenedorResultados = document.querySelector('#resultadosBusqueda .filaResultados');
   contenedorResultados.innerHTML = ''; // Limpia los resultados previos
 
   if (peliculas.length === 0) {
@@ -158,11 +175,11 @@ function mostrarResultadosBusqueda(peliculas) {
 
   peliculas.forEach((pelicula) => {
     const peliculaHTML = `
-       <div class="col-lg-4 columnaTarjeta">
+      <div class="col-lg-4 columnaTarjeta">
         <div class="card tarjeta" style="width: 18rem;">
           <img src="https://fakeimg.pl/300x150" class="card-img-top" alt="${pelicula.title}">
           <div class="card-body">
-            <h5 class="card-title">${pelicula.title}</h5>
+            <h5 class="card-title">${pelicula.title || 'Título no disponible'}</h5>
             <p class="card-text">Director: ${pelicula.director || 'Desconocido'}</p>
             <p class="card-text">Año: ${pelicula.year || 'N/A'}</p>
             <p class="card-text">Género: ${pelicula.genre || 'N/A'}</p>
@@ -174,6 +191,7 @@ function mostrarResultadosBusqueda(peliculas) {
     contenedorResultados.innerHTML += peliculaHTML;
   });
 }
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
